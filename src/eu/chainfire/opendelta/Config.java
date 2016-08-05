@@ -93,12 +93,16 @@ public class Config {
 
         Resources res = context.getResources();
 
+        android_version = res.getString(R.string.android_version);
+
         property_version = getProperty(context,
                 res.getString(R.string.property_version), "");
         property_device = getProperty(context,
                 res.getString(R.string.property_device), "");
         filename_base = String.format(Locale.ENGLISH,
                 res.getString(R.string.filename_base), property_version);
+        filename_base_prefix = String.format(Locale.ENGLISH,
+                res.getString(R.string.filename_base), "");
 
         path_base = String.format(Locale.ENGLISH, "%s%s%s%s", Environment
                 .getExternalStorageDirectory().getAbsolutePath(),
@@ -106,12 +110,14 @@ public class Config {
                 File.separator);
         path_flash_after_update = String.format(Locale.ENGLISH, "%s%s%s",
                 path_base, "FlashAfterUpdate", File.separator);
+
         url_base_delta = String.format(Locale.ENGLISH,
-                res.getString(R.string.url_base_delta), property_device);
+                res.getString(R.string.url_base_delta), property_device, android_version);
         url_base_update = String.format(Locale.ENGLISH,
-                res.getString(R.string.url_base_update), property_device);
+                res.getString(R.string.url_base_update), property_device, android_version);
         url_base_full = String.format(Locale.ENGLISH,
-                res.getString(R.string.url_base_full), property_device);
+                res.getString(R.string.url_base_full), property_device, android_version);
+
         apply_signature = res.getBoolean(R.bool.apply_signature);
         inject_signature_enable = res
                 .getBoolean(R.bool.inject_signature_enable);
@@ -120,10 +126,6 @@ public class Config {
         secure_mode_default = res.getBoolean(R.bool.secure_mode_default);
         url_base_json = res.getString(R.string.url_base_json);
         official_version_tag = res.getString(R.string.official_version_tag);
-        android_version = getProperty(context,
-                res.getString(R.string.android_version), "");
-        filename_base_prefix = String.format(Locale.ENGLISH,
-                res.getString(R.string.filename_base), android_version);
         boolean keep_screen_on = false;
         try {
             String[] devices = res
@@ -140,6 +142,7 @@ public class Config {
         }
         this.keep_screen_on = keep_screen_on;
 
+        Logger.d("android_version: %s", android_version);
         Logger.d("property_version: %s", property_version);
         Logger.d("property_device: %s", property_device);
         Logger.d("filename_base: %s", filename_base);
