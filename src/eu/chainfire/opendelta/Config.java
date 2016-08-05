@@ -117,6 +117,8 @@ public class Config {
                 res.getString(R.string.url_base_update), property_device, android_version);
         url_base_full = String.format(Locale.ENGLISH,
                 res.getString(R.string.url_base_full), property_device, android_version);
+        url_base_json = String.format(Locale.ENGLISH,
+                res.getString(R.string.url_base_json), property_device, android_version);
 
         apply_signature = res.getBoolean(R.bool.apply_signature);
         inject_signature_enable = res
@@ -124,7 +126,6 @@ public class Config {
         inject_signature_keys = res.getString(R.string.inject_signature_keys);
         secure_mode_enable = res.getBoolean(R.bool.secure_mode_enable);
         secure_mode_default = res.getBoolean(R.bool.secure_mode_default);
-        url_base_json = res.getString(R.string.url_base_json);
         official_version_tag = res.getString(R.string.official_version_tag);
         boolean keep_screen_on = false;
         try {
